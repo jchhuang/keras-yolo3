@@ -246,7 +246,7 @@ def _main_(args):
     #   Kick off the training
     ###############################
     callbacks = create_callbacks(config['train']['saved_weights_name'], config['train']['tensorboard_dir'], infer_model)
-
+    #cw={:,:} #handle class unbalance;
     train_model.fit_generator(
         generator        = train_generator, 
         steps_per_epoch  = len(train_generator) * config['train']['train_times'], 
@@ -255,6 +255,7 @@ def _main_(args):
         callbacks        = callbacks, 
         workers          = 4,
         max_queue_size   = 8
+        #class_weight=cw
     )
 
     # make a GPU version of infer_model for evaluation
