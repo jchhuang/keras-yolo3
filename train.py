@@ -249,7 +249,7 @@ def _main_(args):
 
     train_model.fit_generator(
         generator        = train_generator, 
-        steps_per_epoch  = len(train_generator) * config['train']['train_times'], 
+        steps_per_epoch  = len(train_generator) * config['train']['train_times'], #每个epcos包括几个batch，steps_per_epoch*batchsize=样本总数
         epochs           = config['train']['nb_epochs'] + config['train']['warmup_epochs'], 
         verbose          = 2 if config['train']['debug'] else 1,
         callbacks        = callbacks, 
